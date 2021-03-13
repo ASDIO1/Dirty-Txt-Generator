@@ -13,4 +13,4 @@ Options are: (Edit/overwrite, Create new file, Delete just the content, Delete a
 This program allows to create unlimited txt files, but all files are storaged in a folder inside the project, named "SavedTexts". This Folder cant be changed by the user.
 
 
-Use this program to practice  yooutr refactoring Skills.
+Use this program to practice  your refactoring Skills.
