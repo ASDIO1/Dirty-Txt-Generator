@@ -1,7 +1,8 @@
 # Dirty Txt generator code
 
 ##Note
-#######This is a program, made intentionally dirty for study an refactoring practices
+
+#####This is a program, made intentionally dirty for study an refactoring practices
 
 #Instructions
 Run the program
