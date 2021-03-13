@@ -1,10 +1,10 @@
 # Dirty Txt generator code
 
-##Note
+## Note
 
 This is a program made intentionally dirty for study an refactoring practices
 
-##Instructions
+## Instructions
 
 Run the program
 A 6 options menu will appear
