@@ -4,7 +4,8 @@
 
 #####This is a program, made intentionally dirty for study an refactoring practices
 
-#Instructions
+##Instructions
+
 Run the program
 A 6 options menu will appear
 Options are: (Edit/overwrite, Create new file, Delete just the content, Delete a hole text, Show a txt content and an exit option)
