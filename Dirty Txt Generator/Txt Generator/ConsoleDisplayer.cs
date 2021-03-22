@@ -19,7 +19,6 @@ namespace Txt_Generator
             displayMessage("6) Exit", ConsoleColor.DarkYellow, true);
             displayMessage("\nChoose an option:", ConsoleColor.DarkYellow);
         }
-
         static public void displayMessage(string message, ConsoleColor color, bool jumpToTheNextLine = false)
         {
             Console.ForegroundColor = color;
@@ -35,13 +34,11 @@ namespace Txt_Generator
                 Console.WriteLine($"{i}) {txtList[i].Replace(mainPath, "")}");
             }
         }
-
         static public void displayErrorMessage(string errorMesage, int sleepTime)
         {
             displayMessage(errorMesage, ConsoleColor.Red, true);
             Thread.Sleep(sleepTime);
         }
-
         static public void displayFilesListAndMessage(string message, string[] txtList, string mainPath)
         {
             displayMessage("Choose a text file to edit by its id number", ConsoleColor.Cyan, true);

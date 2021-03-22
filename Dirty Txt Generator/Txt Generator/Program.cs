@@ -9,7 +9,7 @@ namespace Txt_Generator
         static void Main(string[] args)
         {
             TextFileManager manager = new TextFileManager();
-            manager.menu();
+            manager.Menu();
         }
     }
 }
