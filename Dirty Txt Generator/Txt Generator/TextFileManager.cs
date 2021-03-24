@@ -7,7 +7,6 @@ namespace Txt_Generator
 {
     class TextFileManager
     {
-
         private string mainPath;
         private TextOrderExecutor textOrderExecutor;
         private string[] txtList;
@@ -17,18 +16,9 @@ namespace Txt_Generator
             txtList = GetFiles(mainPath);
             textOrderExecutor = new TextOrderExecutor();
         }
-        private void createNewText()
+        private void CreateNewText()
         {
-            ConsoleDisplayer.displayMessage("Chose your new Txt name", ConsoleColor.Cyan, true);
-            ConsoleDisplayer.displayMessage("name: ", ConsoleColor.Cyan);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            string newTxtName = Console.ReadLine();
-            string newTxt = $"{mainPath}/{newTxtName}.txt";
-            if (!File.Exists(newTxt))
-            {
-                var myNewFile = File.Create(newTxt);
-                myNewFile.Close();
-            }
+            textOrderExecutor.createNewText(mainPath);
         }
         private void DeleteTextContent()
         {
@@ -50,6 +40,18 @@ namespace Txt_Generator
                 SelectTextAndExecuteOrder(textOrderExecutor.DeleteAnEspecificTextFile);
             }
         }
+        private void displayMenu()
+        {
+            Console.Clear();
+            ConsoleDisplayer.displayMessage("------TXT EDITOR MAIN MENU--------", ConsoleColor.Yellow, true);
+            ConsoleDisplayer.displayMessage("1) Overwrite text", ConsoleColor.Yellow, true);
+            ConsoleDisplayer.displayMessage("2) CREATE new text", ConsoleColor.DarkYellow, true);
+            ConsoleDisplayer.displayMessage("3) Delete text content", ConsoleColor.Yellow, true);
+            ConsoleDisplayer.displayMessage("4) Delete a hole text", ConsoleColor.DarkYellow, true);
+            ConsoleDisplayer.displayMessage("5) Show a txt content", ConsoleColor.Yellow, true);
+            ConsoleDisplayer.displayMessage("6) Exit", ConsoleColor.DarkYellow, true);
+            ConsoleDisplayer.displayMessage("\nChoose an option:", ConsoleColor.DarkYellow);
+        }
         private void ExecuteMenuSeleccion(string option) {
             switch (option)
             {
@@ -57,7 +59,7 @@ namespace Txt_Generator
                     OverwriteText();
                     break;
                 case "2":
-                    createNewText();
+                    CreateNewText();
                     break;
                 case "3":
                     DeleteTextContent();
@@ -85,7 +87,7 @@ namespace Txt_Generator
             do
             {
                 txtList = GetFiles(mainPath);
-                ConsoleDisplayer.displayMenu();
+                displayMenu();
                 option = Console.ReadLine();
                 Console.Clear();
                 ExecuteMenuSeleccion(option);
@@ -111,11 +113,11 @@ namespace Txt_Generator
                 SelectTextAndExecuteOrder(textOrderExecutor.ShowAnEspecificTextContent);
             }
         }
-        private void SelectTextAndExecuteOrder(Action<int, string[]> funtion)
+        private void SelectTextAndExecuteOrder(Action<int, string[]> order)
         {
-            int chosenTxt = Convert.ToInt32(Console.ReadLine());
-            if (chosenTxt <= txtList.Length)
-                funtion(chosenTxt, txtList);
+            int indexOfChosenTxt = Convert.ToInt32(Console.ReadLine());
+            if (indexOfChosenTxt <= txtList.Length)
+                order(indexOfChosenTxt, txtList);
             else
                 ConsoleDisplayer.displayErrorMessage("\n\n\nIncorrect txt id", 500);
         }

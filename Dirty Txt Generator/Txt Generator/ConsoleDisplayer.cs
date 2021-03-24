@@ -2,23 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.IO;
 
 namespace Txt_Generator
 {
     class ConsoleDisplayer
     {
-        static public void displayMenu()
-        {
-            Console.Clear();
-            displayMessage("------TXT EDITOR MAIN MENU--------", ConsoleColor.Yellow, true);
-            displayMessage("1) Overwrite text", ConsoleColor.Yellow, true);
-            displayMessage("2) CREATE new text", ConsoleColor.DarkYellow, true);
-            displayMessage("3) Delete text content", ConsoleColor.Yellow, true);
-            displayMessage("4) Delete a hole text", ConsoleColor.DarkYellow, true);
-            displayMessage("5) Show a txt content", ConsoleColor.Yellow, true);
-            displayMessage("6) Exit", ConsoleColor.DarkYellow, true);
-            displayMessage("\nChoose an option:", ConsoleColor.DarkYellow);
-        }
         static public void displayMessage(string message, ConsoleColor color, bool jumpToTheNextLine = false)
         {
             Console.ForegroundColor = color;
@@ -44,6 +33,19 @@ namespace Txt_Generator
             displayMessage("Choose a text file to edit by its id number", ConsoleColor.Cyan, true);
             displayFilesList(txtList, mainPath);
             displayMessage("\nChoose file:", ConsoleColor.Cyan);
+        }
+        static public void displayFileTextContent(string specificTxtPath)
+        {
+            Console.WriteLine("Actual content:\n");
+            using (StreamReader streamReader = File.OpenText(specificTxtPath))
+            {
+                string textLine = streamReader.ReadLine();
+                do
+                {
+                    ConsoleDisplayer.displayMessage(textLine, ConsoleColor.Magenta, true);
+                    textLine = streamReader.ReadLine();
+                } while (textLine != null);
+            }
         }
     }
 }

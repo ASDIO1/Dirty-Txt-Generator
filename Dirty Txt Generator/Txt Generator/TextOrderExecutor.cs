@@ -11,16 +11,7 @@ namespace Txt_Generator
         public Action<int, string[]> overwriteAnEspecificText = (chosenTxt, txtList) =>
         {
             string specificTxtPath = $"{txtList[chosenTxt]}";
-            Console.WriteLine("Actual content:\n");
-            using (StreamReader sr = File.OpenText(specificTxtPath))
-            {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(s);
-                }
-            }
+            ConsoleDisplayer.displayFileTextContent(specificTxtPath);
             ConsoleDisplayer.displayMessage("\nContinue writting some text:  ", ConsoleColor.DarkCyan, true);
             string userText = Console.ReadLine();
             using (StreamWriter sw = new StreamWriter(txtList[chosenTxt], true))
@@ -30,50 +21,44 @@ namespace Txt_Generator
             }
         };
 
+        public void createNewText(string mainPath)
+        {
+            ConsoleDisplayer.displayMessage("Chose your new Txt name", ConsoleColor.Cyan, true);
+            ConsoleDisplayer.displayMessage("name: ", ConsoleColor.Cyan);
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            string newTxtName = Console.ReadLine();
+            string newTxt = $"{mainPath}/{newTxtName}.txt";
+            if (!File.Exists(newTxt))
+            {
+                var myNewFile = File.Create(newTxt);
+                myNewFile.Close();
+            }
+        }
+
         public Action<int, string[]> deleteAnEspecificTextContent = (chosenTxt, txtList) =>
         {
-            if (chosenTxt <= txtList.Length)
+            string specificTxtPath = $"{txtList[chosenTxt]}";
+            using (StreamWriter sw = new StreamWriter(specificTxtPath, false))
             {
-                string specificTxtPath = $"{txtList[chosenTxt]}";
-                using (StreamWriter sw = new StreamWriter(specificTxtPath, false))
-                {
-                    sw.WriteLine("");
-                }
+                sw.WriteLine("");
+                sw.Close();
             }
-            else
-                ConsoleDisplayer.displayErrorMessage("\n\n\nIncorrect txt id", 500);
         };
 
         public Action<int, string[]> ShowAnEspecificTextContent = (chosenTxt, txtList) =>
         {
-            if (chosenTxt <= txtList.Length)
-            {
-                string specificTxtPath = $"{txtList[chosenTxt]}";
-                Console.WriteLine("Actual content:\n");
-                using (StreamReader sr = File.OpenText(specificTxtPath))
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        ConsoleDisplayer.displayMessage(s, ConsoleColor.Magenta, true);
-                    }
-                }
-                ConsoleDisplayer.displayMessage("\nPress Enter to continue", ConsoleColor.Cyan, true);
-                Console.ReadLine();
-            }
-            else
-                ConsoleDisplayer.displayErrorMessage("\n\n\nIncorrect txt id", 500);
+            string specificTxtPath = $"{txtList[chosenTxt]}";
+            ConsoleDisplayer.displayFileTextContent(specificTxtPath);
+            ConsoleDisplayer.displayMessage("\nPress Enter to continue", ConsoleColor.Cyan, true);
+            Console.ReadLine();
         };
 
         public Action<int, string[]> DeleteAnEspecificTextFile = (chosenTxt, txtList) =>
         {
-            if (chosenTxt <= txtList.Length)
-            {
-                string specificTxtPath = $"{txtList[chosenTxt]}";
-                File.Delete(specificTxtPath);
-            }
-            else
-                ConsoleDisplayer.displayErrorMessage("\n\n\nIncorrect txt id", 500);
+            string specificTxtPath = $"{txtList[chosenTxt]}";
+            File.Delete(specificTxtPath);
         };
+
+        
     }
 }
