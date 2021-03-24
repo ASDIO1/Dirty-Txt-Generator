@@ -44,8 +44,12 @@ namespace Txt_Generator
                 {
                     ConsoleDisplayer.displayMessage(textLine, ConsoleColor.Magenta, true);
                     textLine = streamReader.ReadLine();
-                } while (textLine != null);
+                } while (isTextLineFilled(textLine));
             }
+        }
+        static private bool isTextLineFilled(string textLine)
+        {
+            return textLine != null;
         }
     }
 }

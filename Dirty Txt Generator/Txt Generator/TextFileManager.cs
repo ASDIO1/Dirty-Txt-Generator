@@ -52,7 +52,7 @@ namespace Txt_Generator
             ConsoleDisplayer.displayMessage("6) Exit", ConsoleColor.DarkYellow, true);
             ConsoleDisplayer.displayMessage("\nChoose an option:", ConsoleColor.DarkYellow);
         }
-        private void ExecuteMenuSeleccion(string option) {
+        private void ExecuteMenuSeleccion(string option, ref bool menuInProcess) {
             switch (option)
             {
                 case "1":
@@ -70,6 +70,9 @@ namespace Txt_Generator
                 case "5":
                     ShowTextContent();
                     break;
+                case "6":
+                    menuInProcess = false;
+                    break;
                 default:
                     break;
             }
@@ -83,15 +86,16 @@ namespace Txt_Generator
       
         public void Menu()
         {
-            string exit = "6", option;
+            bool menuInProcess = true;
+            string option;
             do
             {
                 txtList = GetFiles(mainPath);
                 displayMenu();
                 option = Console.ReadLine();
                 Console.Clear();
-                ExecuteMenuSeleccion(option);
-            } while (option != exit);
+                ExecuteMenuSeleccion(option, ref menuInProcess);
+            } while (menuInProcess);
         }
         private void OverwriteText()
         {
