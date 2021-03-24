@@ -8,12 +8,12 @@
 		* TextOrderExecutor
 		* TextFileManager
 		* ConsoleDisplayer
-## Code smell 2: mostrar error
+## Code smell 2: 
 	* Linea/s del code smell: 49-51, 114-116, 149-151 y 181-183
 	* Tipo de code smell: Codigo duplicado
 	* Refactorizacion realizada: Se extrajo el codigo en un metodo, llamado "displayErrorMessage"
 	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 26
-## Code smell 3: Files List
+## Code smell 3: 
 	* Linea/s del code smell: 54-61, 119-126, 154-161 y 186-193
 	* Tipo de code smell: Codigo duplicado
 	* Refactorizacion realizada: Se extrajo el codigo en un metodo, llamado "displayFilesListAndMessage"
@@ -21,20 +21,29 @@
 ## Code smell 4: 
 	* Linea/s del code smell: Metodo "Main" en program
 	* Tipo de code smell: Metodo grande
-	* Refactorizacion realizada: Se creo nuevos objetos
-	* Lineas de refactorizacion:
-## Code smell 5: el clear al inicio de cada metodo
-	* Linea/s del code smell: 201 y 204
-	* Tipo de code smell: Condicional negativo y "Uncommunicative Name" (Referencia: https://apiumhub.com/tech-blog-barcelona/code-smells/ )
-	* Refactorizacion realizada: Se cambio el nombre de la varible a una mas entendible y se creo una funcion que valide la variable en el loop
-	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 42, 47 y 50
-## Code smell 6:mostrar texto generico
+	* Refactorizacion realizada: Se extrageron multiples metodos y se los distribuyo en diferentes clases
+	* Lineas de refactorizacion: 
+		* Refactorizacion de acciones dentro del switch:
+			* Clase TextOrderExecutor, lineas 11, 24, 38, 48, 56
+		* Refactorizacion del menu: 
+			* Clase TextFileManager, lineas 43, 55 y 87
+## Code smell 5: 
+	* Linea/s del code smell: 204 
+	* Tipo de code smell: "Uncommunicative Name" (Referencia: https://apiumhub.com/tech-blog-barcelona/code-smells/ )
+	* Refactorizacion realizada: Se cambio el nombre de la varible a una mas entendible
+	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 42
+## Code smell 5:
+	* Linea/s del code smell: 205
+	* Tipo de code smell: Condicional negativo
+	* Refactorizacion realizada: Se creo una funcion que valide la variable en el loop
+	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 47 y 50
+## Code smell 6:
 	* Linea/s del code smell: 24-25, 26-27, 28-29, 30-31 y muchas mas 
 	* Tipo de code smell: Codigo duplicado
 	* Refactorizacion realizada: Al ver que siempre se cambiaba de color antes de escribir algo, se creo el metodo
 	"displayMessage"
 	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 11
-## Code smell 7: el exit del while es muy redundante
+## Code smell 7: 
 	* Linea/s del code smell: 15, 18
 	* Tipo de code smell: Condicional negativo y "Uncommunicative Name"
 	* Refactorizacion realizada: Se cambio el nombre de la varible a una mas entendible que ademas se pueda usar como una condicional positiva en el codigo
@@ -44,8 +53,15 @@
 	* Tipo de code smell: Codigo duplicado
 	* Refactorizacion realizada: Se extrajo el codigo en un metodo, llamado "displayFileTextContent"
 	* Lineas de refactorizacion: Clase ConsoleDisplayer, linea 37
-## Code smell 9: chosenTxt nos da a entender que la veriable es un texto cuando en realidad es un numero
-	* Linea/s del code smell:
-	* Tipo de code smell:
-	* Refactorizacion realizada:
-	* Lineas de refactorizacion:
+## Code smell 9: 
+	* Linea/s del code smell: 62-65, 127-130, 162-165 y 162-165 
+	* Tipo de code smell: Codigo duplicado
+	* Refactorizacion realizada: Se extrajo el codigo en un metodo, llamado "SelectTextAndExecuteOrder"
+	* Lineas de refactorizacion: Clase TextFileManager, linea 120
+## Code smell 10: 
+	* Linea/s del code smell: 62-65, 127-130, 162-165 y 162-165 
+	* Tipo de code smell: "Uncommunicative Name", el nombre "chosenTxt" hace enteneder que la variable es un string o un objeto, cuando en realidad es un entero.
+	* Refactorizacion realizada:  Se cambio el nombre de la variable
+	* Lineas de refactorizacion: Clase TextFileManager, linea 121
+
+	

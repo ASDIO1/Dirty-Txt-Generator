@@ -52,7 +52,7 @@ namespace Txt_Generator
             ConsoleDisplayer.displayMessage("6) Exit", ConsoleColor.DarkYellow, true);
             ConsoleDisplayer.displayMessage("\nChoose an option:", ConsoleColor.DarkYellow);
         }
-        private void ExecuteMenuSeleccion(string option, ref bool menuInProcess) {
+        private void ExecuteMenuSeleccion(string option, ref bool usingMenu) {
             switch (option)
             {
                 case "1":
@@ -71,7 +71,7 @@ namespace Txt_Generator
                     ShowTextContent();
                     break;
                 case "6":
-                    menuInProcess = false;
+                    usingMenu = false;
                     break;
                 default:
                     break;
@@ -86,7 +86,7 @@ namespace Txt_Generator
       
         public void Menu()
         {
-            bool menuInProcess = true;
+            bool usingMenu = true;
             string option;
             do
             {
@@ -94,8 +94,8 @@ namespace Txt_Generator
                 displayMenu();
                 option = Console.ReadLine();
                 Console.Clear();
-                ExecuteMenuSeleccion(option, ref menuInProcess);
-            } while (menuInProcess);
+                ExecuteMenuSeleccion(option, ref usingMenu);
+            } while (usingMenu);
         }
         private void OverwriteText()
         {
@@ -120,10 +120,15 @@ namespace Txt_Generator
         private void SelectTextAndExecuteOrder(Action<int, string[]> order)
         {
             int indexOfChosenTxt = Convert.ToInt32(Console.ReadLine());
-            if (indexOfChosenTxt <= txtList.Length)
+            if (isTheChosenTxtInTheList(indexOfChosenTxt))
                 order(indexOfChosenTxt, txtList);
             else
                 ConsoleDisplayer.displayErrorMessage("\n\n\nIncorrect txt id", 500);
+        }
+
+        private bool isTheChosenTxtInTheList(int indexOfChosenTxt)
+        {
+            return (indexOfChosenTxt <= txtList.Length) && (indexOfChosenTxt >= 0);
         }
     }
 }
